@@ -1,8 +1,15 @@
 import React from 'react';
 
-const VideoList = () => {
+import { Grid } from '@material-ui/core';
+
+import VideoItem from './VideoItem';
+
+const VideoList = ({ videos, onVideoSelect  }) => {
+    const listOfVideos = videos.map((video, id) => <VideoItem onVideoSelect={onSelectVideo} key={id} video={video} />);
     return (
-        <h1>VideoList</h1>    
+        <Grid container spacing={10}>
+            {listOfVideos}
+        </Grid>
     )
 }
 

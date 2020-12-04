@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 import { Grid } from '@material-ui/core';
 
@@ -10,8 +10,16 @@ import youtube from './api/youtube';
 
 class App extends React.Component {
     state = {
-        video:[],
+        videos:[],
         selectedVideo: null,
+    }
+    
+    componentDidMount(){
+        this.handleSubmit('pdf generation with react and node');
+    }
+    
+    onVideoSelect = (video) => {
+        this.setState({ selectedVideo: video });
     }
     
     handleSubmit = async (searchTerm) => {
@@ -28,7 +36,7 @@ class App extends React.Component {
     }
     
     render(){
-        const { selectedVideo } = this.props;
+        const { selectedVideo, videos } = this.state;
         
         return(
             <div>
@@ -42,7 +50,7 @@ class App extends React.Component {
                                 <VideoDetail video={selectedVideo}/>
                             </Grid>
                             <Grid item xs={4}>
-                                <VideoList />
+                                <VideoList videos={videos} onVideoSelect={ this.onVideoSelect }/>
                             </Grid>
                         </Grid>
                     </Grid>
